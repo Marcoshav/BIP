@@ -1,0 +1,42 @@
+BIP v1 - robotito flotante de escritorio
+=====================================================
+
+OPCION A - Probarlo ya:  doble clic en ejecutar.bat (necesita Python 3; instala PyQt6 solo).
+OPCION B - Tener un .exe: doble clic en crear_exe.bat (deja Bip.exe en esta carpeta).
+
+NOVEDADES v2
+  - Ya no se corta con los bordes: rebota suavemente y queda siempre entero dentro de la pantalla.
+  - Se esconde: cuando estas mirando la pantalla (sin tocar teclado/mouse 25 s), en video, juegos
+    o reuniones se corre a un borde y solo asoma un ojito. Si le acercas el mouse, se asoma.
+    Cada tanto espia. Menu > "Esconderse un rato (10 min)". Tocarlo lo hace volver.
+  - Cuando usas la PC explora por los bordes, no por el medio de tu pantalla.
+  - Distingue apps: Word, Excel, PowerPoint, PDF, notas, Outlook/Gmail, Discord, WhatsApp, Telegram,
+    VS Code/terminal/IDE, Photoshop/Figma/diseno, Spotify, YouTube Music, YouTube, Netflix, juegos,
+    reuniones, redes sociales, compras, IA, calculadora, y navegadores Brave / Opera / Chrome /
+    Edge / Firefox. Cada una tiene su objeto flotante, su cara y sus comentarios:
+      Word: lee de izquierda a derecha, suelta letritas.  Excel: sus ojos son numeros y suelta formulas.
+      Discord/WhatsApp/Telegram: avisa cuando tenes mensajes sin leer (aunque esten de fondo).
+  - Musica: lee la cancion que suena (Spotify / YouTube Music) y la muestra; si pausas, pregunta.
+    Si abris YouTube Music sin nada sonando, ofrece elegir una playlist/cancion segun la hora, el
+    clima y lo que estas haciendo (6 s para cancelar tocandolo). Menu > Musica: elegir clima/estilo,
+    play/pausa, siguiente, anterior, volumen. Tu propia lista: Menu > "Editar mi lista de musica".
+    (Abre YouTube Music en tu navegador predeterminado.)
+  - Juegos: "A la mancha" (huye de tu mouse, lo atrapas pasandole el mouse por arriba), "Escondite"
+    (se esconde y lo buscas con el mouse) y "Que juegue con mi mouse" (agarra tu cursor y lo pasea;
+    apenas lo mueves vos, lo suelta. Nunca hace clic).
+
+REPRODUCTOR EN LA PANTALLA DE BIP (v2.1)
+  - Si hay musica sonando (YouTube Music en Brave/Opera/Chrome/Edge, Spotify, etc.), Bip muestra una tarjeta
+    con la PORTADA, el titulo, el artista, el progreso y botones  anterior / play-pausa / siguiente.
+  - Aparece al pasarle el mouse por arriba y 6 segundos cuando cambia el tema. Tocar la portada la deja fija
+    (o Menu > "Reproductor fijo en pantalla"). La portada tambien flota al lado de Bip mientras suena.
+  - Lee los controles multimedia de Windows (los mismos de la barra de volumen). Eso necesita los paquetes de
+    requirements-medios.txt, que ejecutar.bat / crear_exe.bat instalan solos. Si no se pueden instalar, Bip
+    muestra el titulo de la ventana con una portada generada y los botones usan las teclas multimedia.
+
+COMO USARLO
+  - Mouse por arriba / clic: mimos.  Doble clic: pirueta.  Arrastrarlo: se queda donde lo dejas.
+  - Clic derecho: menu con todo (juegos, musica, esconderse, Pomodoro, sonido, explorar, ciudad...).
+  - No lee lo que escribis: solo mira si hubo actividad y el titulo de la ventana activa.
+
+Datos en %USERPROFILE%\.bip (estado.json, bip.log, sonidos, musica.txt).
