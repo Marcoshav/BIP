@@ -2,9 +2,7 @@
 
 Bip es una mascota virtual flotante para Windows, desarrollada con Python y PyQt6. Tiene expresiones animadas, sonidos, comportamientos interactivos y funciones opcionales relacionadas con la música.
 
-La interfaz se dibuja mediante código; no se incluyen imágenes ni archivos de audio externos.
-
-![Bip](docs/BIP.gif)
+![Bip](BIP.gif)
 
 ## Funciones
 
