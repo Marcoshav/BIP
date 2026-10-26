@@ -73,3 +73,10 @@ Los datos locales se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente
 El código original de este proyecto se distribuye bajo la licencia MIT. Consultá el archivo [`LICENSE`](LICENSE).
 
 **Dependencias:** las bibliotecas de terceros mantienen sus propias licencias. En particular, PyQt6 se distribuye bajo GPLv3 o una licencia comercial, según los términos de Riverbank Computing. Revisá las condiciones aplicables antes de redistribuir una versión empaquetada del programa: https://www.riverbankcomputing.com/software/pyqt/
+
+## ¿Te gustaría colaborar con el proyecto?
+
+**cafecito.app:** https://cafecito.app/marcoshav
+ETH o BSC (ERC20 o BEP20): 0xcc24fa1fca0f0961b09ca20443f4d4459b36e91e
+SOL (Solana): 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC
+TRX (TRC20): TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa
