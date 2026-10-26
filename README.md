@@ -81,9 +81,8 @@ El código original de este proyecto se distribuye bajo la licencia MIT. Consult
 - **SOL (Solana):** 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC.
 - **TRX (TRC20):** TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa.
 
-  <div align="center">
-
- ⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀
+<div align="center">
+⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀
 ⠀⠀⠀⣠⣾⠿⠛⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠛⠿⣷⣄⠀⠀⠀
 ⠀⢀⣾⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣷⡀⠀
 ⠀⣼⡟⠀⠀⠀⠀⠀⠀⢀⣴⣶⣶⣄⠀⠀⠀⠀⠀⠀⣠⣶⣶⣦⡀⠀⠀⠀⠀⠀⠀⢻⣧⠀
@@ -95,5 +94,4 @@ El código original de este proyecto se distribuye bajo la licencia MIT. Consult
 ⠀⠈⢿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⡿⠁⠀
 ⠀⠀⠀⠙⢿⣶⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣤⣶⡿⠋⠀⠀⠀
 ⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀
-
-  </div>
+</div>
