@@ -76,7 +76,24 @@ El código original de este proyecto se distribuye bajo la licencia MIT. Consult
 
 ## ¿Te gustaría colaborar con el proyecto?
 
-**cafecito.app:** https://cafecito.app/marcoshav.
-ETH o BSC (ERC20 o BEP20): 0xcc24fa1fca0f0961b09ca20443f4d4459b36e91e.
-SOL (Solana): 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC.
-TRX (TRC20): TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa.
+- **cafecito.app:** https://cafecito.app/marcoshav.
+- **ETH o BSC (ERC20 o BEP20):** 0xcc24fa1fca0f0961b09ca20443f4d4459b36e91e.
+- **SOL (Solana):** 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC.
+- **TRX (TRC20):** TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa.
+
+  <div align="center">
+
+ ⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⣾⠿⠛⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠛⠿⣷⣄⠀⠀⠀
+⠀⢀⣾⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣷⡀⠀
+⠀⣼⡟⠀⠀⠀⠀⠀⠀⢀⣴⣶⣶⣄⠀⠀⠀⠀⠀⠀⣠⣶⣶⣦⡀⠀⠀⠀⠀⠀⠀⢻⣧⠀
+⠀⣿⡇⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⢸⣿⠀
+⠀⣿⡇⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⢸⣿⠀
+⠀⣿⡇⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⢸⣿⠀
+⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀
+⠀⢻⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢶⣄⣀⣀⣠⡶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡟⠀
+⠀⠈⢿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⡿⠁⠀
+⠀⠀⠀⠙⢿⣶⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣤⣶⡿⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀
+
+  </div>
