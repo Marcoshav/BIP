@@ -11,12 +11,12 @@ import bip_musica as M
 
 
 class Juegos:
-    def b_dj(self, mood=None, query=None):
+    def b_dj(self, mood=None, query=None, mine=False):
         self.prop_for("music", 12)
         self.mood("excited", 8)
         self.say("Dejame elegir algo de música...", 3, 2)
         self.sfx("think", 1, 2)
-        M.request(self, mood, query)
+        M.request(self, mood, query, mine)
         t = 0.0
         while self.music_result is None and t < 11:
             t += self.dt

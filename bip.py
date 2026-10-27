@@ -12,16 +12,17 @@ from PyQt6.QtCore import Qt, QTimer, QRectF, QPointF, QLockFile
 from PyQt6.QtGui import QPainter, QPixmap, QIcon, QColor, QPen
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QMessageBox
 
-from bip_sistema import APP_DIR, SysInfo, install_excepthook
+from bip_sistema import APP_DIR, SysInfo, install_excepthook, __version__
 from bip_ui import PetUI
 from bip_cerebro import PetBrain
 from bip_pensar import PetThink
 from bip_conductas import Conductas
 from bip_juegos import Juegos
 from bip_tarjeta import PetMedia
+from bip_charla import PetCharla
 
 
-class Pet(PetUI, PetBrain, PetThink, Conductas, Juegos, PetMedia):
+class Pet(PetUI, PetBrain, PetThink, Conductas, Juegos, PetMedia, PetCharla):
     BEHAVIORS = {**Conductas.BEHAVIORS, **Juegos.BEHAVIORS}
 
     def __init__(self, offline=False):
@@ -29,6 +30,7 @@ class Pet(PetUI, PetBrain, PetThink, Conductas, Juegos, PetMedia):
         self.init_ui()
         self.init_brain(offline, os.path.abspath(__file__))
         self.init_think()
+        self.init_charla()
         self.init_media(offline)
         self.sc_t = 1.0
         self.start_timers()
@@ -68,7 +70,7 @@ def main():
     tray = None
     if QSystemTrayIcon.isSystemTrayAvailable():
         tray = QSystemTrayIcon(tray_icon(), app)
-        tray.setToolTip("Bip")
+        tray.setToolTip("Bip v%s" % __version__)
         menu = QMenu()
         menu.addAction("Mostrar / ocultar", lambda: pet.setVisible(not pet.isVisible()))
         menu.addAction("Darle mimos", pet.menu_pet)

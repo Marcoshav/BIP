@@ -13,6 +13,14 @@ Bip es una mascota virtual flotante para Windows, desarrollada con Python y PyQt
 - Movimiento autónomo, juegos sencillos y opciones para esconderse.
 - Funciones opcionales como Pomodoro, recordatorios y datos del clima.
 
+### Novedades de la versión 2.0
+
+- **Navegadores y pestañas:** reconoce Brave, Opera GX, Opera, Chrome, Edge, Firefox y Vivaldi, y más de 45 sitios (YouTube, Netflix, Gmail, GitHub, Mercado Libre, redes sociales, etc.). Al escanear una ventana comenta según la app o la pestaña.
+- **Repertorio de comentarios:** desde el menú *Charla* o con un comando (`youtube`, `netflix`, `github`...) Bip suelta varios comentarios seguidos sobre esa página.
+- **Comandos:** `ayuda`, `hablar`, `musica`, `gustos`, `contame`, `charla poco`, `bailar`, `escanear`, etc.
+- **Tus propios sitios:** se agregan en `~/.bip/sitios.txt`.
+- **Música que es tuya:** Bip aprende lo que escuchás (artistas y temas) y arma mixes y radios con eso, en vez de elegir playlists genéricas. Todo se guarda localmente y se puede borrar desde el menú.
+
 ![Bip](BIP.gif)
 
 ## Requisitos
@@ -55,9 +63,9 @@ Ejecutá `crear_exe.bat` en Windows. El proceso intenta generar `Bip.exe`. El ej
 
 ## Privacidad
 
-Bip puede consultar el título de la ventana activa y la actividad general del equipo para adaptar sus comportamientos. Algunas funciones se conectan a internet para obtener información meteorológica, ubicación aproximada por IP o buscar música, según las funciones que uses.
+Bip puede consultar el título de la ventana activa (nunca el contenido de la página ni lo que escribís) y la actividad general del equipo para adaptar sus comportamientos. Algunas funciones se conectan a internet para obtener información meteorológica, ubicación aproximada por IP o buscar música, según las funciones que uses.
 
-Los datos locales se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente antes de usar el programa si necesitás verificar en detalle su comportamiento de privacidad.
+Los datos locales, incluidos los gustos musicales que aprende, se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente antes de usar el programa si necesitás verificar en detalle su comportamiento de privacidad.
 
 ## Estructura del proyecto
 
@@ -68,6 +76,8 @@ Los datos locales se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente
 - `bip_cara.py`, `bip_props.py`, `bip_fx.py`: expresiones, objetos y efectos.
 - `bip_sonido.py`: generación de sonidos.
 - `bip_apps.py`, `bip_sistema.py`: detección de aplicaciones y funciones de Windows.
+- `bip_sitios.py`, `bip_charla.py`: navegadores, pestañas, comentarios y comandos.
+- `bip_gustos.py`: aprende lo que escuchás para elegir tu música.
 - `bip_medios.py`, `bip_tarjeta.py`, `bip_musica.py`: música y reproductor.
 
 ## ¿Te gustaría colaborar con el proyecto?

@@ -16,6 +16,7 @@ APP_DIR = os.path.join(os.path.expanduser("~"), ".bip")
 STATE_FILE = os.path.join(APP_DIR, "estado.json")
 LOG_FILE = os.path.join(APP_DIR, "bip.log")
 RUN_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
+__version__ = "2.0"
 
 
 def log(msg):
@@ -34,7 +35,8 @@ def install_excepthook():
 
 
 DEFAULTS = dict(name="Bip", energy=85.0, affection=70.0, fun=60.0, lat=None, lon=None, city="",
-                explore="normal", volume=0.7, bubbles=True, reminders=True, last_seen=None, first_run=True)
+                explore="normal", volume=0.7, bubbles=True, reminders=True, last_seen=None, first_run=True,
+                charla="normal")
 
 
 def load_state():
@@ -96,6 +98,34 @@ if IS_WIN:
 
 class SysInfo:
     dpr = 1.0   # Win32 da pixeles físicos; Qt usa lógicos. Se setea al iniciar.
+    _exe_cache = {}
+
+    @staticmethod
+    def exe_info(pid):
+        """(nombre_exe, ruta_completa) de un proceso; ('', '') si no se puede. Cacheado 2 minutos."""
+        if not IS_WIN or not pid:
+            return "", ""
+        c = SysInfo._exe_cache.get(pid)
+        if c and time.monotonic() - c[0] < 120:
+            return c[1], c[2]
+        exe = path = ""
+        try:
+            h = _k32.OpenProcess(0x1000, False, pid)
+            if h:
+                try:
+                    size = wintypes.DWORD(520)
+                    pbuf = ctypes.create_unicode_buffer(520)
+                    if _k32.QueryFullProcessImageNameW(h, 0, pbuf, ctypes.byref(size)):
+                        path = pbuf.value
+                        exe = os.path.basename(path).lower()
+                finally:
+                    _k32.CloseHandle(h)
+        except Exception:
+            pass
+        if len(SysInfo._exe_cache) > 200:
+            SysInfo._exe_cache.clear()
+        SysInfo._exe_cache[pid] = (time.monotonic(), exe, path)
+        return exe, path
 
     @staticmethod
     def idle_seconds():
@@ -145,7 +175,7 @@ class SysInfo:
 
     @staticmethod
     def windows():
-        """Ventanas visibles de otras apps: lista de dict(title,x,y,w,h) en pixeles lógicos."""
+        """Ventanas visibles de otras apps: lista de dict(title,x,y,w,h,pid,exe) en pixeles lógicos."""
         if not IS_WIN:
             return []
         out = []
@@ -176,7 +206,8 @@ class SysInfo:
                 _u32.GetWindowTextW(hwnd, buf, n + 1)
                 if buf.value == "Program Manager":
                     return True
-                out.append(dict(title=buf.value, x=r.left / d, y=r.top / d, w=w, h=h))
+                out.append(dict(title=buf.value, x=r.left / d, y=r.top / d, w=w, h=h, pid=pid.value,
+                                exe=SysInfo.exe_info(pid.value)[0]))
             except Exception:
                 pass
             return True
