@@ -72,9 +72,21 @@ Los datos locales se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente
 
 ## Licencia
 
-El código original de este proyecto se distribuye bajo la licencia MIT. Consultá el archivo [`LICENSE`](LICENSE).
+Copyright (C) 2026 Marcos Herrero (Marcoshav)
 
-**Dependencias:** las bibliotecas de terceros mantienen sus propias licencias. En particular, PyQt6 se distribuye bajo GPLv3 o una licencia comercial, según los términos de Riverbank Computing. Revisá las condiciones aplicables antes de redistribuir una versión empaquetada del programa: https://www.riverbankcomputing.com/software/pyqt/
+Bip es software libre: podés redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU (GPL) publicada por la Free Software Foundation, versión 3 de la Licencia. Consultá el archivo [`LICENSE`](LICENSE).
+
+Esto significa, en resumen:
+
+- Podés usar, estudiar, modificar y compartir Bip.
+- Si distribuís una versión modificada (o un programa que la incluya), tenés que publicarla bajo la misma licencia GPLv3, entregar su código fuente y **conservar el aviso de copyright y la autoría original**.
+- No se puede cerrar el código ni distribuirlo como producto propietario.
+
+Bip se distribuye con la esperanza de que sea útil, pero **SIN NINGUNA GARANTÍA**, ni siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.
+
+> Las versiones publicadas antes de este cambio bajo licencia MIT siguen disponibles bajo esos términos para quienes ya las obtuvieron.
+
+**Dependencias:** las bibliotecas de terceros mantienen sus propias licencias. En particular, PyQt6 se distribuye bajo GPLv3 o una licencia comercial, según los términos de Riverbank Computing, y es compatible con la GPLv3 de este proyecto: https://www.riverbankcomputing.com/software/pyqt/
 
 ## ¿Te gustaría colaborar con el proyecto?
 
