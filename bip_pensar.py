@@ -157,12 +157,14 @@ class PetThink:
                 self.mood("dizzy", 3)
                 self.say("¡Cuánto cambio de ventana! Me mareo...", 4, 1)
         app = self.app
+        web_owned = False          # True: la capa de sitios (bip_charla) comenta esta ventana
         if own:
             act = self.activity
         elif idle > 180 and self.activity not in ("video", "meeting", "game", "music"):
             act = "away"
         else:
             app = identify(title, exe)
+            app, web_owned = self.site_update(now, title, exe, pid, app)
             act = APPS[app]["cat"] if app else classify(title, exe)
             if self.fullscreen and act in ("other", "browse", "files"):
                 act = "video"
@@ -174,17 +176,19 @@ class PetThink:
             self.reading = app in ("word", "pdf", "notes", "outlook")
             self.app_talk_next = now + random.uniform(240, 480)
             info = APPS.get(app)
-            if info and info["enter"] and random.random() < .75 and not self.sleeping:
+            if info and info["enter"] and random.random() < .75 and not self.sleeping and not web_owned:
                 self.say(random.choice(info["enter"]), None, 0)
             if app in ("excel", "calculator"):
                 self.fx.add("text", self.px - 60, self.py - 70, 0, -35, 1.8, 18, col=(110, 255, 150), text="= ?")
             if app in ("word", "excel", "powerpoint", "discord", "vscode"):
                 self.jump(.5)
         info = APPS.get(self.app) if self.app else None
-        if info and info["talk"] and now > self.app_talk_next and act != "away":
+        if info and info["talk"] and now > self.app_talk_next and act != "away" and not web_owned:
             self.app_talk_next = now + random.uniform(300, 540)
             if random.random() < .55:
-                self.say(random.choice(info["talk"]), None, 0)
+                # en video/música/juegos Bip está en modo silencioso: el comentario pasa igual, sin sonidito
+                loud = self.quiet and not self.fullscreen
+                self.say(random.choice(info["talk"]), None, 1 if loud else 0, silent=loud)
 
         # --- música: canción actual y pausas
         if self.app in ("ytmusic", "spotify") and not own and not (self.media.available and self.media.state):

@@ -1,10 +1,33 @@
-BIP v1 - robotito flotante de escritorio
+BIP v2.0 - robotito flotante de escritorio
 =====================================================
 
 OPCION A - Probarlo ya:  doble clic en ejecutar.bat (necesita Python 3; instala PyQt6 solo).
 OPCION B - Tener un .exe: doble clic en crear_exe.bat (deja Bip.exe en esta carpeta).
 
-NOVEDADES v2
+NOVEDADES v2.0
+  - Reconoce el NAVEGADOR y la PESTAÑA: Brave, Opera GX, Opera, Chrome, Edge, Firefox, Vivaldi, y mas de 45 sitios
+    (YouTube, YouTube Music, Netflix, Twitch, Gmail, Docs/Sheets, GitHub, Stack Overflow, Wikipedia, Mercado Libre,
+    Instagram, TikTok, Reddit, X, IA, estudio, noticias, viajes...). Cada uno tiene su cara, su objeto y sus comentarios.
+    Solo lee el TITULO de la ventana activa, nunca el contenido de la pagina.
+  - Escanear una ventana ahora comenta segun lo que hay en ella (la app o la pestaña), no mas "todo en orden" generico.
+  - Repertorio: Menu > Charla > "Comentar esta pagina o app" hace que Bip suelte 5 comentarios seguidos de lo que
+    estas viendo. O escribi un comando (Menu > Charla > Comando...): youtube, netflix, github, mercado libre...
+  - Comandos: ayuda, hablar [pagina], musica, musica <artista>, gustos, contame, charla mucho/normal/poco/nada,
+    bailar, jugar, foto, escanear, carrera, mancha, escondite, cantar, dibujar, clima, dormir, pomodoro, mimos.
+  - Charla ajustable (Menu > Charla > Cuanto comenta solo): Mucho / Normal / Poco / Nada. Tambien comenta de madrugada
+    distinto (te manda a dormir) y se pone en silencio si estas en una reunion.
+  - Tus propios sitios: Menu > Charla > "Mis sitios y comentarios" abre sitios.txt. Una linea por sitio:
+        mi blog, wordpress : comentario 1 | comentario 2 | comentario 3
+  - MUSICA TUYA: Bip ahora APRENDE lo que escuchas (Spotify / YouTube Music): cuenta un tema cuando suena mas de 35 s
+    seguidos (los que salteas no suman) y le da mas peso a lo reciente. Cuando elige musica usa tus artistas y
+    temas: abre un mix del artista o la radio de un tema que escuchaste, en vez de playlists al azar.
+      Menu > Musica > "Que Bip elija de lo que escucho yo"      (usa solo tus gustos)
+      Menu > Musica > "Decirle que artistas escucho..."          (para arrancar ya, sin esperar a que aprenda)
+      Menu > Musica > "Ver lo que aprendio" / "Olvidar lo que aprendio"
+    En musica.txt tambien podes escribir una linea  artista: Soda Stereo.  Todo queda en tu PC (~/.bip/gustos.json).
+    Si todavia no aprendio nada, usa tu lista y el estado de animo como antes.
+
+NOVEDADES v1.x (versiones anteriores)
   - Ya no se corta con los bordes: rebota suavemente y queda siempre entero dentro de la pantalla.
   - Se esconde: cuando estas mirando la pantalla (sin tocar teclado/mouse 25 s), en video, juegos
     o reuniones se corre a un borde y solo asoma un ojito. Si le acercas el mouse, se asoma.
@@ -39,4 +62,4 @@ COMO USARLO
   - Clic derecho: menu con todo (juegos, musica, esconderse, Pomodoro, sonido, explorar, ciudad...).
   - No lee lo que escribis: solo mira si hubo actividad y el titulo de la ventana activa.
 
-Datos en %USERPROFILE%\.bip (estado.json, bip.log, sonidos, musica.txt).
+Datos en %USERPROFILE%\.bip (estado.json, bip.log, sonidos, musica.txt, sitios.txt, gustos.json).

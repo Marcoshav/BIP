@@ -10,6 +10,7 @@ import urllib.request
 import webbrowser
 
 from bip_sistema import APP_DIR, IS_WIN, log
+from bip_gustos import clean_artist
 
 FAV_FILE = os.path.join(APP_DIR, "musica.txt")
 
@@ -25,10 +26,12 @@ MOODS = {
 }
 
 FAV_HELP = ("# Tu lista de música para Bip. Una por línea: un link (YouTube / YouTube Music / playlist)\n"
-            "# o un texto para buscar (por ejemplo: 'mi playlist de rock'). Las líneas con # se ignoran.\n")
+            "# o un texto para buscar (por ejemplo: 'mi playlist de rock'). Las líneas con # se ignoran.\n"
+            "# Para decirle qué artistas te gustan escribí:  artista: Soda Stereo\n"
+            "# (Bip además aprende solo de lo que escuchás: Spotify, YouTube Music, etc.)\n")
 
 
-def favorites():
+def _read_lines():
     try:
         if not os.path.exists(FAV_FILE):
             os.makedirs(APP_DIR, exist_ok=True)
@@ -39,6 +42,16 @@ def favorites():
             return [l.strip() for l in f if l.strip() and not l.strip().startswith("#")]
     except Exception:
         return []
+
+
+def favorites():
+    """Links o búsquedas de tu lista (las líneas 'artista:' no van acá)."""
+    return [l for l in _read_lines() if not l.lower().startswith("artista:")]
+
+
+def fav_artists():
+    """Artistas que escribiste en la lista como 'artista: Nombre'."""
+    return [l.split(":", 1)[1].strip() for l in _read_lines() if l.lower().startswith("artista:") and l.split(":", 1)[1].strip()]
 
 
 def pick_mood(pet):
@@ -64,12 +77,19 @@ def _fetch(url, timeout=5):
         return r.read().decode("utf-8", "ignore")
 
 
-def resolve(query, playlist=True):
-    """URL de YouTube Music que arranca sola; si algo falla, la búsqueda."""
+def resolve(query, playlist=True, radio=False):
+    """URL de YouTube Music que arranca sola; si algo falla, la búsqueda.
+    radio=True: busca el tema y abre su 'radio' (temas parecidos); playlist=True: una playlist/mix."""
     q = urllib.parse.quote_plus(query)
     fallback = "https://music.youtube.com/search?q=" + q
     try:
-        if playlist:
+        if radio:
+            html = _fetch("https://www.youtube.com/results?search_query=%s&sp=EgIQAQ%%253D%%253D" % q)
+            m = re.search(r'"videoRenderer":\{"videoId":"([\w-]{11})"', html)
+            if m:
+                vid = m.group(1)
+                return "https://music.youtube.com/watch?v=%s&list=RDAMVM%s" % (vid, vid)
+        elif playlist:
             html = _fetch("https://www.youtube.com/results?search_query=%s&sp=EgIQAw%%253D%%253D" % q)
             m = re.search(r'"playlistId":"((?:PL|RD|OL)[\w-]{10,})"', html)
             if m:
@@ -83,11 +103,42 @@ def resolve(query, playlist=True):
     return fallback
 
 
-def request(pet, mood=None, query=None):
-    """Busca en segundo plano; deja el resultado en pet.music_result = (label, url)."""
+def _taste_pick(pet, g):
+    """Elige algo de TUS gustos. Devuelve (label, consulta, tipo, texto_para_mostrar, artista) o None."""
+    recent = list(getattr(pet, "dj_recent", []))[-2:]
+    if random.random() < .5:
+        for _ in range(4):
+            song = g.pick_song()
+            if song and song.get("artist") not in recent:
+                q = ("%s %s" % (song.get("artist", ""), song["title"])).strip()
+                return ("parecida a lo que escuchás", q, "radio", "radio de «%s»" % song["title"][:36], song.get("artist", ""))
+    artist = g.pick_artist(avoid=recent)
+    if artist:
+        return ("de lo que escuchás", "Mix - " + artist, "mix", "mix de " + artist, artist)
+    return None
+
+
+def request(pet, mood=None, query=None, mine=False):
+    """Busca en segundo plano; deja el resultado en pet.music_result = (label, url, texto).
+    Prioridad: pedido explícito > tus gustos (lo que escuchás + 'artista:' de tu lista) > tu lista > estado de ánimo."""
     pet.music_result = None
-    favs = favorites() if mood is None and query is None else []
-    if query is None and favs and random.random() < .6:
+    g = getattr(pet, "gustos", None)
+    if g is not None:
+        try:
+            nuevos = [a for a in fav_artists() if g.artists.get(clean_artist(a), {}).get("seed", 0) <= 0]
+            if nuevos:
+                g.seed("\n".join(nuevos))
+        except Exception as e:
+            log("musica seed: %s" % e)
+    kind, disp, chosen = "search", None, None
+    taste = None
+    if query is None and g is not None and g.has_data() and (mine or (mood is None and random.random() < .85)):
+        taste = _taste_pick(pet, g)
+    favs = favorites() if (mood is None and query is None and taste is None) else []
+
+    if taste:
+        label, query, kind, disp, chosen = taste
+    elif query is None and favs and random.random() < .6:
         query = random.choice(favs)
         label = "algo de tu lista"
     elif query is None:
@@ -99,13 +150,19 @@ def request(pet, mood=None, query=None):
         label = "tu pedido"
 
     pet.music_pending = (label, query)
+    if chosen:
+        pet.dj_recent = (list(getattr(pet, "dj_recent", [])) + [chosen])[-4:]
 
     def work():
         if re.match(r"^https?://", query):
             url = query
+        elif kind == "radio":
+            url = resolve(query, radio=True)
+        elif kind == "mix":
+            url = resolve(query, playlist=True)
         else:
             url = resolve(query, playlist=random.random() < .7)
-        pet.music_result = (label, url, query)
+        pet.music_result = (label, url, disp or query)
 
     threading.Thread(target=work, daemon=True).start()
 

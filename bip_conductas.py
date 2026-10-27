@@ -180,8 +180,15 @@ class Conductas:
         yield 3.1
         self.mood("proud", 2)
         self.sfx("ding")
-        self.say(random.choice(["Escaneo completo: todo en orden.", "Nada raro por acá. ¡Ventana aprobada!",
-                                "Análisis listo. Parece que todo está bien."]), 4)
+        try:
+            msg = self.scan_comment(w)        # comentario según la app o la pestaña (bip_charla)
+        except Exception:
+            msg = None
+        if msg:
+            self.say(msg, None, 1)
+        else:
+            self.say(random.choice(["Escaneo completo: todo en orden.", "Nada raro por acá. ¡Ventana aprobada!",
+                                    "Análisis listo. Parece que todo está bien."]), 4)
         yield 2.2
 
     def b_chase_cursor(self):

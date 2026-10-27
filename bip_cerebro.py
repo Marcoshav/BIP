@@ -11,6 +11,7 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QMenu, QInputDialog
 
 import bip_cara as C
+from bip_charla import LEVEL_NAMES
 from bip_fx import Overlay, clamp
 from bip_apps import APPS
 import bip_musica as M
@@ -106,6 +107,9 @@ class PetBrain:
         self.cfg.update(name=self.name, energy=round(self.energy, 1), affection=round(self.affection, 1),
                         fun=round(self.fun, 1), last_seen=time.time(), first_run=False)
         save_state(self.cfg)
+        g = getattr(self, "gustos", None)
+        if g is not None:
+            g.flush()
 
     # ---------------------------------------------------------------- tareas
     def run_task(self, dt):
@@ -163,14 +167,14 @@ class PetBrain:
         self.hide_until = 0.0
         self.start(self.BEHAVIORS[key](self))
 
-    def run_dj(self, mood=None, query=None):
+    def run_dj(self, mood=None, query=None, mine=False):
         if self.sleeping:
             self.wake("")
         self.mode = "free"
         self.sc_t = 1.0
         self.manual_until = time.monotonic() + 45
         self.hide_until = 0.0
-        self.start(self.b_dj(mood, query))
+        self.start(self.b_dj(mood, query, mine))
 
     def hide_for(self, minutes):
         self.hide_until = time.monotonic() + minutes * 60
@@ -441,6 +445,7 @@ class PetBrain:
         add(m, "Que juegue con mi mouse", lambda: self.run_behavior("mouse"))
         add(m, "Esconderse un rato (10 min)", lambda: self.hide_for(10))
         mm = m.addMenu("Música")
+        add(mm, "Que Bip elija de lo que escucho yo", lambda: self.run_dj(mine=True))
         add(mm, "Que Bip elija algo", lambda: self.run_dj())
         for key, (lab, _q) in M.MOODS.items():
             add(mm, "Música %s" % lab, lambda k=key: self.run_dj(k))
@@ -449,6 +454,20 @@ class PetBrain:
                         ("Subir volumen", "volup"), ("Bajar volumen", "voldown"), ("Silenciar", "mute")):
             add(mm, text, lambda kk=k: M.media_key(kk, 3 if kk in ("volup", "voldown") else 1))
         add(mm, "Editar mi lista de música", M.open_favorites)
+        add(mm, "Decirle qué artistas escucho...", self.menu_gustos_artistas)
+        add(mm, "Ver lo que aprendió de mi música", self.menu_gustos_ver)
+        add(mm, "Olvidar lo que aprendió", self.menu_gustos_borrar)
+        cm = m.addMenu("Charla")
+        add(cm, "Comentar esta página o app (repertorio)", lambda: self.run_repertorio())
+        add(cm, "Comando... (youtube, netflix, música, bailar)", self.menu_comando)
+        add(cm, "Contame algo", self.contar_algo)
+        fm = cm.addMenu("Cuánto comenta solo")
+        for text, v in LEVEL_NAMES:
+            a = add(fm, text, lambda val=v: self.set_charla(val))
+            a.setCheckable(True)
+            a.setChecked(self.cfg.get("charla", "normal") == v)
+        add(cm, "Mis sitios y comentarios (editar)", self.menu_sitios)
+        add(cm, "Ayuda de comandos", self.comando_ayuda)
         add(m, "Reproductor fijo en pantalla", lambda v: (setattr(self, "card_pin", bool(v)), self.cfg.__setitem__("card_pin", bool(v))), self.card_pin)
         add(m, "Ofrecerme música al abrir YouTube Music", lambda v: self.cfg.__setitem__("dj_auto", bool(v)), self.cfg.get("dj_auto", True))
         add(m, "¿Qué hora y clima hay?", self.menu_status)

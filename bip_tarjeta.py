@@ -99,6 +99,10 @@ class PetMedia:
                 self.jump(.5)
         if not view:
             self.cover_pm, self.cover_key = None, None
+        # aprende tus gustos: sólo cuando suena música de verdad (Spotify / YouTube Music)
+        g = getattr(self, "gustos", None)
+        if g is not None and view and self.music_ish(view):
+            g.observe(view["title"], view["artist"] if view["full"] else "", view["playing"], min(dt, .5))
         # canción actual para el resto del cerebro (DJ, caras, "¿pausaste?")
         if view and view["full"]:
             song = view["title"] if (view["playing"] and self.music_ish(view)) else None
