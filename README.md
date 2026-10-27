@@ -70,6 +70,14 @@ Los datos locales se guardan en `%USERPROFILE%\\.bip`. Revisá el código fuente
 - `bip_apps.py`, `bip_sistema.py`: detección de aplicaciones y funciones de Windows.
 - `bip_medios.py`, `bip_tarjeta.py`, `bip_musica.py`: música y reproductor.
 
+## ¿Te gustaría colaborar con el proyecto?
+
+- **cafecito.app:** https://cafecito.app/marcoshav.
+- **ETH o BSC (ERC20 o BEP20):** 0xcc24fa1fca0f0961b09ca20443f4d4459b36e91e.
+- **SOL (Solana):** 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC.
+- **TRX (TRC20):** TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa.
+
+
 ## Licencia
 
 Copyright (C) 2026 Marcos Herrero (Marcoshav)
@@ -82,16 +90,4 @@ Esto significa, en resumen:
 - Si distribuís una versión modificada (o un programa que la incluya), tenés que publicarla bajo la misma licencia GPLv3, entregar su código fuente y **conservar el aviso de copyright y la autoría original**.
 - No se puede cerrar el código ni distribuirlo como producto propietario.
 
-Bip se distribuye con la esperanza de que sea útil, pero **SIN NINGUNA GARANTÍA**, ni siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.
-
-> Las versiones publicadas antes de este cambio bajo licencia MIT siguen disponibles bajo esos términos para quienes ya las obtuvieron.
-
 **Dependencias:** las bibliotecas de terceros mantienen sus propias licencias. En particular, PyQt6 se distribuye bajo GPLv3 o una licencia comercial, según los términos de Riverbank Computing, y es compatible con la GPLv3 de este proyecto: https://www.riverbankcomputing.com/software/pyqt/
-
-## ¿Te gustaría colaborar con el proyecto?
-
-- **cafecito.app:** https://cafecito.app/marcoshav.
-- **ETH o BSC (ERC20 o BEP20):** 0xcc24fa1fca0f0961b09ca20443f4d4459b36e91e.
-- **SOL (Solana):** 8gX9APP1HVWMMub6hAutSiKezgfJt7TENRLJ9jPtc6hC.
-- **TRX (TRC20):** TUqi8Y6ytaX3c91afsucCYH6LkqGDPo8xa.
-
